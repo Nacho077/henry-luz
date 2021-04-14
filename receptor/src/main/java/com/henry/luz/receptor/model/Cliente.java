@@ -4,19 +4,23 @@ import com.sun.istack.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @NoArgsConstructor
+@Entity
 public class Cliente {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @NotNull
     private String nombre, dni;
 
     private String apellido;
 
+    @ManyToOne
+    @JoinColumn(name = "direccion")
     private Domicilio domicilio;
 }

@@ -4,17 +4,20 @@ import com.sun.istack.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @NoArgsConstructor
+@Entity
 public class Domicilio {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @NotNull
     private String direccion;
 
+    @OneToOne(fetch = FetchType.EAGER)
     private Medidor medidor;
 }
