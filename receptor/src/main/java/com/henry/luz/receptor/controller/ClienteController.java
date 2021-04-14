@@ -28,4 +28,9 @@ public class ClienteController {
     public Cliente getClienteById(@PathVariable Integer id){
         return clienteService.getById(id);
     }
+
+    @PostMapping("/{id}/domicilio/{idDomicilio}")
+    public String addDomicilioToCliente(@PathVariable Integer id, @PathVariable Integer idDomicilio){
+        return clienteService.addDomicilio(id, idDomicilio);
+    }
 }
