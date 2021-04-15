@@ -23,4 +23,7 @@ public class Cliente {
     @ManyToOne
     @JoinColumn(name = "direccion")
     private Domicilio domicilio;
+
+    @NotNull
+    private FacturaEnum facturaType;
 }
