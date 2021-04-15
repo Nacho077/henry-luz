@@ -1,6 +1,7 @@
 package com.henry.luz.receptor.service;
 
 import com.henry.luz.receptor.model.Domicilio;
+import com.henry.luz.receptor.model.Medidor;
 import com.henry.luz.receptor.repository.DomicilioRepository;
 import com.henry.luz.receptor.utils.URLBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ public class DomicilioService {
 
     @Autowired
     private DomicilioRepository domicilioRepository;
+    @Autowired
+    private MedidorService medidorService;
 
     public List<Domicilio> getAll() {
         return domicilioRepository.findAll();
@@ -28,5 +31,13 @@ public class DomicilioService {
     public Domicilio getById(Integer id) {
         return domicilioRepository.findById(id)
                 .orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
+    }
+
+    public String addMedidor(Integer id, Integer idMedidor) {
+        Domicilio domicilio = this.getById(id);
+        Medidor medidor = medidorService.getById(idMedidor);
+        domicilio.setMedidor(medidor);
+        domicilioRepository.save(domicilio);
+        return URLBuilder.buildURL("domicilio", id);
     }
 }

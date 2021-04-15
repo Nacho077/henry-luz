@@ -28,4 +28,9 @@ public class DomicilioController {
     public Domicilio getDomicilioById(@PathVariable Integer id){
         return domicilioService.getById(id);
     }
+
+    @PostMapping("/{id}/medidor/{idMedidor}")
+    public String addMedidorToDomicilio(@PathVariable Integer id, @PathVariable Integer idMedidor){
+        return domicilioService.addMedidor(id, idMedidor);
+    }
 }
