@@ -20,9 +20,11 @@ public class Cliente {
 
     private String apellido;
 
-    @ManyToOne
-    @JoinColumn(name = "direccion")
-    private Domicilio domicilio;
+    @NotNull
+    private String domicilio;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    private Medidor medidor;
 
     @NotNull
     private FacturaEnum facturaType;

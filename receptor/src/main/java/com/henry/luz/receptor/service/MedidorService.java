@@ -1,5 +1,7 @@
 package com.henry.luz.receptor.service;
 
+import com.henry.luz.receptor.model.Cliente;
+import com.henry.luz.receptor.model.Mediciones;
 import com.henry.luz.receptor.model.Medidor;
 import com.henry.luz.receptor.repository.MedidorRepository;
 import com.henry.luz.receptor.utils.URLBuilder;

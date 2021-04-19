@@ -1,27 +1,24 @@
-package com.henry.luz.receptor.model;
+package com.henry.luz.medidor.model;
 
-import com.sun.istack.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.util.Calendar;
 import java.util.Date;
 
 @Data
 @NoArgsConstructor
 @Entity
-public class Mediciones {
+public class Medicion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
-    private Medidor medidor;
-
-    @NotNull
     private Date fecha;
-
-    @NotNull
     private Float medicion;
 }

@@ -19,23 +19,26 @@ public class FacturaService {
 
     public Factura generarFactura(Integer id) {
         Cliente cliente = clienteService.getById(id);
-        if(Objects.isNull(cliente.getDomicilio())){
-            throw new MissingResourceException("el cliente no posee domiclio", "cliente", "");
-        }
-        if(Objects.isNull(cliente.getDomicilio().getMedidor())){
+        if(Objects.isNull(cliente.getMedidor())){
             throw new MissingResourceException("el cliente no posee medidor", "cliente", "");
         }
+
         Factura newFactura;
-        if(cliente.getFacturaType().equals("COMUN")){
-            newFactura = new FacturaComun();
-        }else if(cliente.getFacturaType().equals("ANTIGUEDAD")){
+
+        if(cliente.getFacturaType().name().equals("MAYORES")){
+            newFactura = new FacturaMayores();
+        }else if(cliente.getFacturaType().name().equals("ANTIGUEDAD")){
             newFactura = new FacturaAntiguedad();
         }else{
-            newFactura = new FacturaMayores();
+            newFactura = new FacturaComun();
         }
-        newFactura.setNumeroDeMedidor(cliente.getDomicilio().getMedidor().getId());
+
+        newFactura.setNumeroDeMedidor(cliente.getMedidor().getId());
         newFactura.setTipoDeTarifa(cliente.getFacturaType().name());
+        newFactura.setCliente(cliente);
+
         facturaRepository.save(newFactura);
+
         return newFactura;
     }
 }

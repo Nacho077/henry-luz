@@ -1,5 +1,6 @@
 package com.henry.luz.receptor.controller;
 
+import com.henry.luz.receptor.model.Mediciones;
 import com.henry.luz.receptor.model.Medidor;
 import com.henry.luz.receptor.service.MedidorService;
 import org.springframework.beans.factory.annotation.Autowired;

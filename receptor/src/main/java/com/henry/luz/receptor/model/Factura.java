@@ -2,6 +2,7 @@ package com.henry.luz.receptor.model;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.AccessType;
@@ -28,11 +29,12 @@ public abstract class Factura implements Serializable {
 
     @AccessType(AccessType.Type.PROPERTY)
     public abstract FacturaEnum facturaEnum();
-    //private Cliente cliente;
-    //private Domicilio domicilio;
     private Integer numeroDeMedidor;
     private Float medicionInicial, medicionFinal, totalPagar;
     private String consumoTotal;
     private Date dateMedicionInicial, dateMedicionFinal;
     private String tipoDeTarifa;
+
+    @ManyToOne
+    private Cliente cliente;
 }
