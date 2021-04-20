@@ -31,9 +31,10 @@ public abstract class Factura implements Serializable {
     public abstract FacturaEnum facturaEnum();
     private Integer numeroDeMedidor;
     private Float medicionInicial, medicionFinal, totalPagar;
-    private String consumoTotal;
+    private Float consumoTotal;
     private Date dateMedicionInicial, dateMedicionFinal;
     private String tipoDeTarifa;
+    private Boolean pagado;
 
     @ManyToOne
     private Cliente cliente;

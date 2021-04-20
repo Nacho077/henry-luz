@@ -25,7 +25,7 @@ public class MedicionService {
     @Autowired
     MedidorRepository medicionRepository;
 
-    @Scheduled(fixedRate = 10000)
+    @Scheduled(fixedRate = 100)
     public void sendMedicion() throws IOException, InterruptedException {
 
         Medicion medicion = this.createMedicion();
