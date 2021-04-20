@@ -29,4 +29,9 @@ public class MedidorController {
     public Medidor getMedidorById(@PathVariable Integer id){
         return medidorService.getById(id);
     }
+
+    @DeleteMapping("/{id}")
+    public String DeleteMedidor(@PathVariable Integer id){
+        return medidorService.deleteById(id);
+    }
 }

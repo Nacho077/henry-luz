@@ -45,4 +45,9 @@ public class ClienteController {
     public String addDomicilioToCliente(@PathVariable Integer id, @PathVariable Integer idMedidor){
         return clienteService.addMedidor(id, idMedidor);
     }
+
+    @DeleteMapping("/{id}")
+    public String deleteCliente(@PathVariable Integer id){
+        return clienteService.deleteClient(id);
+    }
 }

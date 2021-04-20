@@ -31,4 +31,10 @@ public class MedidorService {
         return medidorRepository.findById(id)
                 .orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
     }
+
+    public String deleteById(Integer id) {
+        Medidor medidor = this.getById(id);
+        medidorRepository.delete(medidor);
+        return URLBuilder.buildURL("medidor", null);
+    }
 }

@@ -40,4 +40,10 @@ public class ClienteService {
         clienteRepository.save(cliente);
         return URLBuilder.buildURL("cliente", id);
     }
+
+    public String deleteClient(Integer id) {
+        Cliente cliente = this.getById(id);
+        clienteRepository.delete(cliente);
+        return URLBuilder.buildURL("cliente", null);
+    }
 }

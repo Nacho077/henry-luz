@@ -33,4 +33,5 @@ public class FacturaController {
     private String PagarFactura(@PathVariable Integer id){
         return facturaService.pagar(id);
     }
+
 }
