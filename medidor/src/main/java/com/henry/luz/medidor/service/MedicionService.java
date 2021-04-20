@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.henry.luz.medidor.model.Medicion;
 import com.henry.luz.medidor.model.Medidor;
 import com.henry.luz.medidor.repository.MedidorRepository;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -26,6 +27,7 @@ public class MedicionService {
     MedidorRepository medicionRepository;
 
     @Scheduled(fixedRate = 100)
+    @CircuitBreaker(name = "sendMedicion", fallbackMethod = "fallback")
     public void sendMedicion() throws IOException, InterruptedException {
 
         Medicion medicion = this.createMedicion();
@@ -87,5 +89,9 @@ public class MedicionService {
         HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
 
         System.out.println(response.body());
+    }
+
+    public void fallback(final Throwable t) throws IOException, InterruptedException{
+        System.out.println("la base no esta disponible en este momento...");
     }
 }
