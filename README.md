@@ -85,4 +85,3 @@ Para la completitud del TP se considera :
 * Completar la funcionalidad del mismo.
 * Recuerden aplicar los conceptos aprendidos durante el curso, los buenos usos de la herencia,polimorfismo, sobrecarga de los metodos,
 utilizar el circuit breaker en caso que el medidor no pueda enviar la información al servidor establecer un fallback que almacene momentaneamente el consumo hasta que se pueda comunicar con el servicio.
-  
